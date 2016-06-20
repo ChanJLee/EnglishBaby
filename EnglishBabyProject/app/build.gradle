@@ -1,0 +1,99 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
+    }
+
+    signingConfigs {
+
+        def Properties localProps = new Properties()
+        localProps.load(new FileInputStream(file('../local.properties')))
+        def Properties keyProps = new Properties()
+
+        keyProps.load(new FileInputStream(file(localProps['keystore.props.file'])))
+
+        release {
+            //release版本使用assert确保存在该属性否则报错，避免错误打包
+            assert localProps['keystore.props.file'];
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility rootProject.ext.javaVersion
+        sourceCompatibility rootProject.ext.javaVersion
+    }
+
+    packagingOptions {
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+    }
+
+    lintOptions {
+        abortOnError rootProject.ext.abortOnLintError
+        checkReleaseBuilds rootProject.ext.checkLintRelease
+        quiet true
+        ignoreWarnings false
+
+        // Some libraries have issues with this.
+        disable 'InvalidPackage'
+        // Lint gives this warning but SDK 20 would be Android L Beta.
+        disable 'OldTargetApi'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+
+    compile rootProject.ext.supportLib
+    compile rootProject.ext.designLib
+
+    //dagger2
+    apt rootProject.ext.daggerApt
+    provided rootProject.ext.daggerProvided
+    compile rootProject.ext.daggerLib
+
+    //butter knife
+    compile rootProject.ext.butterKnifeLib
+
+    compile rootProject.ext.systemBarTintLib
+
+    //rx java
+    compile rootProject.ext.rxJavaLib
+    compile rootProject.ext.rxAndroidLib
+
+    compile rootProject.ext.eventBusLib
+}

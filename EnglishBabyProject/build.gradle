@@ -1,0 +1,76 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.1.2'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+    }
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+def frescoVersion = "0.9.0"
+def daggerAptVersion = "2.0.2"
+def daggerProvidedVersion = "10.0-b28"
+def daggerVersion = "2.0.2"
+def butterKnifeVersion = "7.0.1"
+def systemBarVersion = "1.0.3"
+def supportVersion = "23.4.0"
+def rxJavaVersion = "1.0.14"
+def rxAndroidVersion = "1.0.1"
+def eventBusVersion = "3.0.0"
+
+project.ext {
+
+    applicationId = "com.chan.yuchanmusic"
+    buildToolsVersion = "23.0.3"
+    compileSdkVersion = 23
+    minSdkVersion = 14
+    targetSdkVersion = 23
+    versionCode = 1
+    versionName = "1.0.0"
+    abortOnLintError = false
+    checkLintRelease = false
+    useJack = false
+    abortOnLintError = false
+    javaVersion = 1.7
+
+    frescoLib = "com.facebook.fresco:fresco:${frescoVersion}"
+
+    //dagger
+    daggerApt = "com.google.dagger:dagger-compiler:${daggerAptVersion}"
+    daggerProvided = "org.glassfish:javax.annotation:${daggerProvidedVersion}"
+    daggerLib = "com.google.dagger:dagger:${daggerVersion}"
+
+    //butterknife
+    butterKnifeLib = "com.jakewharton:butterknife:${butterKnifeVersion}"
+
+    //status bar
+    systemBarTintLib =  "com.readystatesoftware.systembartint:systembartint:${systemBarVersion}"
+
+    //SUPPORT
+    supportLib = "com.android.support:appcompat-v7:${supportVersion}"
+    designLib = "com.android.support:design:${supportVersion}"
+
+    //RX
+    rxJavaLib = "io.reactivex:rxjava:${rxJavaVersion}"
+    rxAndroidLib = "io.reactivex:rxandroid:${rxAndroidVersion}"
+
+    //EVENT BUS
+    eventBusLib = "org.greenrobot:eventbus:${eventBusVersion}"
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
