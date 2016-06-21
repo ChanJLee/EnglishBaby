@@ -46,7 +46,7 @@ android {
 
     compileOptions {
         sourceCompatibility rootProject.ext.javaVersion
-        sourceCompatibility rootProject.ext.javaVersion
+        targetCompatibility rootProject.ext.javaVersion
     }
 
     packagingOptions {
@@ -78,6 +78,8 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
 
+    compile project(":babytextview")
+
     compile rootProject.ext.supportLib
     compile rootProject.ext.designLib
 
@@ -96,4 +98,6 @@ dependencies {
     compile rootProject.ext.rxAndroidLib
 
     compile rootProject.ext.eventBusLib
+
+    compile rootProject.ext.processBarLib
 }

@@ -6,15 +6,19 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name="com.chan.englishbaby.base.BaseApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.chan.englishbaby.MainActivity">
+        <activity android:name="com.chan.englishbaby.views.impls.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity android:name="com.chan.englishbaby.MainActivity" android:exported="false"/>
+        <activity android:name="com.chan.englishbaby.views.impls.InitActivity"/>
     </application>
 
 </manifest>

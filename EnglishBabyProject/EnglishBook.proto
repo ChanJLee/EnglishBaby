@@ -1,0 +1,30 @@
+syntax = "proto2";
+package chan.book.english;
+
+option java_package = "com.chan.englishbaby.bean";
+option java_outer_classname = "EnglishBookProto";
+
+message Word {
+    required string content = 1;
+    required string attribute = 2;
+}
+
+message Lesson {
+     required string name = 1;
+    required string titleEnglish = 2;
+    required string titleChinese = 3;
+    required string listenQuestion = 4;
+    required string content = 5;
+    repeated Word words = 6;
+    required string translation = 7;
+}
+
+message Unit {
+    required string name = 1;
+    repeated Lesson lessons = 2;
+}
+
+message EnglishBook {
+    repeated Unit units = 1;
+}
+

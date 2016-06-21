@@ -1,4 +1,4 @@
-package com.chan.englishbaby.views.impls;
+package com.chan.englishbaby.views.interfaces;
 
 import com.chan.englishbaby.views.interfaces.IView;
 

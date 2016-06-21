@@ -3,7 +3,7 @@ package com.chan.englishbaby.presenter.impls;
 import android.app.Activity;
 
 import com.chan.englishbaby.presenter.interfaces.IPresenter;
-import com.chan.englishbaby.views.impls.IMainView;
+import com.chan.englishbaby.views.interfaces.IMainView;
 import com.chan.englishbaby.views.interfaces.IView;
 
 import javax.inject.Inject;

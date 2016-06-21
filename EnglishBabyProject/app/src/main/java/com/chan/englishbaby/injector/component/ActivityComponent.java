@@ -7,6 +7,9 @@ import com.chan.englishbaby.MainActivity;
 import com.chan.englishbaby.injector.annotation.PerActivity;
 import com.chan.englishbaby.injector.module.ActivityModule;
 import com.chan.englishbaby.injector.annotation.ContextLife;
+import com.chan.englishbaby.model.rx.RxBook;
+import com.chan.englishbaby.views.impls.InitActivity;
+import com.chan.englishbaby.views.impls.SplashActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import dagger.Component;
@@ -27,5 +30,10 @@ public interface ActivityComponent {
     Activity getActivity();
 
     SystemBarTintManager getSystemBarTintManager();
+
+    RxBook getRxBook();
+
     void inject(MainActivity activity);
+    void inject(SplashActivity activity);
+    void inject(InitActivity activity);
 }

@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.chan.englishbaby.injector.annotation.ContextLife;
+import com.chan.englishbaby.model.sp.PreferenceConfig;
 
 import javax.inject.Singleton;
 
@@ -27,5 +28,11 @@ public class ApplicationModule {
     @Provides
     public Context provideContext() {
         return m_application;
+    }
+
+    @Singleton
+    @Provides
+    public PreferenceConfig providePreferenceConfig() {
+        return new PreferenceConfig(m_application);
     }
 }

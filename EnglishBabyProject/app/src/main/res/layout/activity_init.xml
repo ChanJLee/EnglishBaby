@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:gravity="bottom"
+              android:padding="@dimen/activity_horizontal_margin"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/init_hint"
+        android:padding="@dimen/init_hint_height"/>
+
+    <com.daimajia.numberprogressbar.NumberProgressBar
+        android:layout_width="match_parent"
+        android:id="@+id/id_processBar"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

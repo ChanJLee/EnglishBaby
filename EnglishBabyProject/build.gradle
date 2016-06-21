@@ -30,6 +30,7 @@ def supportVersion = "23.4.0"
 def rxJavaVersion = "1.0.14"
 def rxAndroidVersion = "1.0.1"
 def eventBusVersion = "3.0.0"
+def processBarLibVersion = "1.2@aar"
 
 project.ext {
 
@@ -69,6 +70,9 @@ project.ext {
 
     //EVENT BUS
     eventBusLib = "org.greenrobot:eventbus:${eventBusVersion}"
+
+    //process bar
+    processBarLib = "com.daimajia.numberprogressbar:library:${processBarLibVersion}"
 }
 
 task clean(type: Delete) {

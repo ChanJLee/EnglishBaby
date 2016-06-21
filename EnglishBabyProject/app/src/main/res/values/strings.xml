@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">EnglishBoby</string>
+    <string name="demo_string">
+        Why are legends handed down by storytellers useful?We can read of things that happened 5,000 years ago in the Near East, where people first learned to write. But there are some parts of the word where even now people cannot write. The only way that they can preserve their history is to recount it as sagas -- legends handed down from one generation of another. These legends are useful because they can tell us something about migrations of people who lived long ago, but none could write down what they did. Anthropologists wondered where the remote ancestors of the Polynesian peoples now living in the Pacific Islands came from. The sagas of these people explain that some of them came from Indonesia about 2,000 years ago.
+    But the first people who were like ourselves lived so long ago that even their sagas,Why are legends handed down by storytellers useful?We can read of things that happened 5,000 years ago in the Near East, where people first learned to write. But there are some parts of the word where even now people cannot write. The only way that they can preserve their history is to recount it as sagas -- legends handed down from one generation of another. These legends are useful because they can tell us something about migrations of people who lived long ago, but none could write down what they did. Anthropologists wondered where the remote ancestors of the Polynesian peoples now living in the Pacific Islands came from. The sagas of these people explain that some of them came from Indonesia about 2,000 years ago.
+    But the first people who were like ourselves lived so long ago that even their sagas,
+    </string>
+    <string name="init_hint">初次使用需初始化，请稍等</string>
+    <string name="load_error">初始化失败</string>
 </resources>

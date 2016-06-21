@@ -10,8 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.chan.englishbaby.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+    <com.chan.babytextviewedit.BabyTextView
+        android:layout_width="match_parent"
+        android:background="@null"
+        android:id="@+id/id_text"
+        android:text="@string/demo_string"
+        android:scrollbars="vertical"
+        android:padding="10dp"
+        android:layout_height="match_parent"/>
+
 </RelativeLayout>
