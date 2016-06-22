@@ -1,9 +1,8 @@
 package com.chan.englishbaby.model.rx;
 
 import android.content.Context;
-import android.util.Log;
 
-import com.chan.englishbaby.bean.EnglishBookProto;
+import com.chan.englishbaby.proto.EnglishBookProto;
 import com.chan.englishbaby.injector.annotation.ContextLife;
 import com.chan.englishbaby.model.parse.BookParser;
 import com.chan.englishboby.R;
@@ -81,11 +80,6 @@ public class RxBook {
 
                     EnglishBookProto.EnglishBook englishBook = bookParser.loadBook();
                     subscriber.onNext(80);
-
-                    for (EnglishBookProto.Unit unit : englishBook.getUnitsList()) {
-                        Log.d("chan_debug unit", unit.getName());
-
-                    }
 
                     s_englishBookWeakReference = new WeakReference<EnglishBookProto.EnglishBook>(englishBook);
 

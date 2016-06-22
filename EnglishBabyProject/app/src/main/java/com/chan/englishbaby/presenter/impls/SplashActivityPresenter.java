@@ -39,7 +39,7 @@ public class SplashActivityPresenter implements IPresenter {
     public void invokeActivity() {
         if (m_preferenceConfig.isFirstUse()) {
             InitActivity.invoke(m_activity);
-            //m_preferenceConfig.setHasUsed();
+            m_preferenceConfig.setHasUsed();
         } else {
             MainActivity.invoke(m_activity);
         }

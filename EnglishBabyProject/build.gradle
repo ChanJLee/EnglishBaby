@@ -34,7 +34,7 @@ def processBarLibVersion = "1.2@aar"
 
 project.ext {
 
-    applicationId = "com.chan.yuchanmusic"
+    applicationId = "com.chan.englishbaby"
     buildToolsVersion = "23.0.3"
     compileSdkVersion = 23
     minSdkVersion = 14

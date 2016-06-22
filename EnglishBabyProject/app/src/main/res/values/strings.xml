@@ -7,4 +7,23 @@
     </string>
     <string name="init_hint">初次使用需初始化，请稍等</string>
     <string name="load_error">初始化失败</string>
+    <string name="navigation_drawer_open">open</string>
+    <string name="navigation_drawer_close">close</string>
+    <string name="nav_title">新概念英语</string>
+    <string name="main_error_load">加载失败</string>
+    <string name="refresh_success">刷新成功</string>
+    <string name="listen_question">First listen and then answer the following question.\n听录音，然后回答以下问题。</string>
+    <string name="lesson_dialog_title">标记单词等级</string>
+    <string name="cancel">取消</string>
+    <string name="accept">确认</string>
+    <string name="none">无</string>
+    <string name="level_0">等级 0</string>
+    <string name="level_1">等级 1</string>
+    <string name="_2">等级 2</string>
+    <string name="_3">等级 3</string>
+    <string name="_4">等级 4</string>
+    <string name="_5">等级 5</string>
+    <string name="new_words_label">生词和短语</string>
+    <string name="trans_label">参考译文</string>
+    <string name="content_label">正文</string>
 </resources>

@@ -8,7 +8,9 @@ import com.chan.englishbaby.injector.annotation.PerActivity;
 import com.chan.englishbaby.injector.module.ActivityModule;
 import com.chan.englishbaby.injector.annotation.ContextLife;
 import com.chan.englishbaby.model.rx.RxBook;
+import com.chan.englishbaby.model.rx.RxWordLevel;
 import com.chan.englishbaby.views.impls.InitActivity;
+import com.chan.englishbaby.views.impls.LessonActivity;
 import com.chan.englishbaby.views.impls.SplashActivity;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
@@ -33,7 +35,10 @@ public interface ActivityComponent {
 
     RxBook getRxBook();
 
+    RxWordLevel getRxWordLevel();
+
     void inject(MainActivity activity);
     void inject(SplashActivity activity);
     void inject(InitActivity activity);
+    void inject(LessonActivity activity);
 }

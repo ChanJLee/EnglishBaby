@@ -18,7 +18,8 @@
         </activity>
 
         <activity android:name="com.chan.englishbaby.MainActivity" android:exported="false"/>
-        <activity android:name="com.chan.englishbaby.views.impls.InitActivity"/>
+        <activity android:name="com.chan.englishbaby.views.impls.InitActivity" android:exported="false"/>
+        <activity android:name="com.chan.englishbaby.views.impls.LessonActivity" android:exported="false"/>
     </application>
 
 </manifest>

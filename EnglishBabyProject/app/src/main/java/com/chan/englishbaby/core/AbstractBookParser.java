@@ -31,14 +31,26 @@ public abstract class AbstractBookParser {
     }
 
     protected void parse() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(m_inputStream));
+        BufferedReader bufferedReader = null;
+        InputStreamReader inputStreamReader = null;
         String content = null;
 
-        while ((content = bufferedReader.readLine()) != null) {
-            m_parseState.parse(content);
-        }
+        try {
+            inputStreamReader = new InputStreamReader(m_inputStream);
+            bufferedReader = new BufferedReader(inputStreamReader);
+            while ((content = bufferedReader.readLine()) != null) {
+                m_parseState.parse(content);
+            }
+            parseFinished();
+        } finally {
+            if (inputStreamReader != null) {
+                inputStreamReader.close();
+            }
 
-        parseFinished();
+            if (bufferedReader != null) {
+                bufferedReader.close();
+            }
+        }
     }
 
     private void setState(int state) {
@@ -92,7 +104,7 @@ public abstract class AbstractBookParser {
                 return;
             }
 
-            parsedUnit(newLine);
+            parsedUnit(newLine.trim());
             ////System.out.println("单元: " + newLine);
         }
     }
@@ -101,8 +113,9 @@ public abstract class AbstractBookParser {
 
         @Override
         public void parse(String newLine) {
+
             //System.out.println("课程: " + newLine);
-            parsedLesson(newLine);
+            parsedLesson(newLine.trim());
             setState(STATE_TITLE);
         }
     }
@@ -118,6 +131,11 @@ public abstract class AbstractBookParser {
 
             if (TextUtils.isEmpty(newLine)) {
                 setState(STATE_LISTEN_TITLE);
+                return;
+            } else if (newLine.contains("First listen and then answer the following")) {
+                //37 47 会出现错误   47是typo
+                setState(STATE_LISTEN_TITLE);
+                m_parseState.parse(newLine);
                 return;
             }
 

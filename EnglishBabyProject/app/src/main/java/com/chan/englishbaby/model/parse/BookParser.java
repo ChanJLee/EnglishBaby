@@ -3,7 +3,7 @@ package com.chan.englishbaby.model.parse;
 
 import android.text.TextUtils;
 
-import com.chan.englishbaby.bean.EnglishBookProto;
+import com.chan.englishbaby.proto.EnglishBookProto;
 import com.chan.englishbaby.core.AbstractBookParser;
 
 import java.io.IOException;

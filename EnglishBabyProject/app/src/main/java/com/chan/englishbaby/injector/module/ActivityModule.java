@@ -6,6 +6,7 @@ import android.content.Context;
 import com.chan.englishbaby.injector.annotation.ContextLife;
 import com.chan.englishbaby.injector.annotation.PerActivity;
 import com.chan.englishbaby.model.rx.RxBook;
+import com.chan.englishbaby.model.rx.RxWordLevel;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import dagger.Module;
@@ -45,5 +46,11 @@ public class ActivityModule {
     @PerActivity
     public RxBook provideRxBook() {
         return new RxBook(m_activity.getApplication());
+    }
+
+    @Provides
+    @PerActivity
+    public RxWordLevel provideRxWordLevel() {
+        return new RxWordLevel(m_activity.getApplication());
     }
 }
