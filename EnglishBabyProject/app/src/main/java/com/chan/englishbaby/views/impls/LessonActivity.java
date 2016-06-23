@@ -1,12 +1,14 @@
 package com.chan.englishbaby.views.impls;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chan.englishbaby.base.BaseActivity;
 import com.chan.englishbaby.injector.component.ActivityComponent;
@@ -54,6 +56,8 @@ public class LessonActivity extends BaseActivity implements ILessonView {
     @Inject
     LessonDialog m_lessonDialog;
 
+    private ProgressDialog m_progressDialog;
+
     private static final String EXTRA_LESSON = "lesson";
     private EnglishBookProto.Lesson m_lesson;
 
@@ -95,8 +99,18 @@ public class LessonActivity extends BaseActivity implements ILessonView {
 
         ButterKnife.bind(this);
 
+        initProgressDialog();
         setSupportActionBar(m_toolbar);
         setContentViews();
+        initDialog();
+
+        m_lessonActivityPresenter.load();
+    }
+
+    private void initProgressDialog() {
+        m_progressDialog = new ProgressDialog(this);
+        m_progressDialog.setCancelable(false);
+        m_progressDialog.setTitle(getString(R.string.lesson_progress));
     }
 
     private void setContentViews() {
@@ -113,12 +127,23 @@ public class LessonActivity extends BaseActivity implements ILessonView {
         }
     }
 
+
+    private void initDialog() {
+        m_lessonDialog.setOnLevelSelected(new LessonDialog.OnLevelSelected() {
+            @Override
+            public void onLevelSelected(short level) {
+                m_lessonActivityPresenter.setHighLight(m_content.getEditableText(), level);
+            }
+        });
+    }
+
     private void setWordsContent() {
         List<EnglishBookProto.Word> words = m_lesson.getWordsList();
         StringBuilder stringBuilder = new StringBuilder();
 
         for (EnglishBookProto.Word word : words) {
-            stringBuilder.append(word.getContent()).append("\n").append(word.getAttribute()).append("\n");
+            stringBuilder.append(word.getContent()).append("\n")
+                    .append(word.getAttribute()).append("\n");
         }
 
         stringBuilder.deleteCharAt(stringBuilder.length() - 1);
@@ -128,5 +153,21 @@ public class LessonActivity extends BaseActivity implements ILessonView {
     @OnClick(R.id.id_more)
     void showDialog() {
         m_lessonDialog.show();
+    }
+
+    @Override
+    public void showLoading(String message) {
+        m_progressDialog.setMessage(message);
+        m_progressDialog.show();
+    }
+
+    @Override
+    public void dismissLoading() {
+        m_progressDialog.dismiss();
+    }
+
+    @Override
+    public void showError(String error) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show();
     }
 }

@@ -8,4 +8,12 @@
     <color name="normalTextWhite">@color/normalWhite</color>
     <color name="colorTitle">#4e4d4d</color>
     <color name="colorContent">#767676</color>
+
+
+    <color name="level0">#1ec3c6</color>
+    <color name="level1">#1ec6a2</color>
+    <color name="level2">#1ec653</color>
+    <color name="level3">#8bc61e</color>
+    <color name="level4">#c6bb1e</color>
+    <color name="level5">#bf7c25</color>
 </resources>

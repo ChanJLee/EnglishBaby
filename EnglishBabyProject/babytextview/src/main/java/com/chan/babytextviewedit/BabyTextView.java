@@ -4,12 +4,14 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.os.Build;
+import android.text.Selection;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Display;
 import android.view.MotionEvent;
+import android.view.ViewConfiguration;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +25,7 @@ import com.chan.babytextviewedit.utils.TextJustification;
 public class BabyTextView extends EditText {
 
     private MovementMethodHandler m_handler;
+    private int m_slop;
 
     public BabyTextView(Context context) {
         super(context);
@@ -47,13 +50,7 @@ public class BabyTextView extends EditText {
 
     private void init() {
         m_handler = new MovementMethodHandler(this);
-        Display display = ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay();
-        DisplayMetrics dm = new DisplayMetrics();
-        display.getMetrics(dm);
-        int width = dm.widthPixels;
-        //根据屏幕调整文字大小
-        //setLineSpacing(0f, 1f);
-        //setTextSize(8 * (float) width / 320f);
+        m_slop = (int) (ViewConfiguration.get(getContext()).getScaledTouchSlop() * 0.75);
     }
     
     private boolean isJustify = false;
@@ -77,13 +74,20 @@ public class BabyTextView extends EditText {
         return false;
     }
 
+    private int m_lastY = 0;
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
+                m_lastY = (int) event.getY();
                 selectWords(event);
                 break;
+            case MotionEvent.ACTION_MOVE:
+                if (event.getY() - m_lastY >= m_slop) {
+                    clearSelect();
+                }
         }
 
         //因为涉及滚动 所以还是要使用到super的method
@@ -97,6 +101,10 @@ public class BabyTextView extends EditText {
      */
     private void selectWords(MotionEvent event) {
         m_handler.selectWord(event);
+    }
+
+    private void clearSelect() {
+        Selection.removeSelection(getText());
     }
 
     /**

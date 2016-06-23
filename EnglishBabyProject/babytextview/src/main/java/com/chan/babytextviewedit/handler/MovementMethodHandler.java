@@ -35,16 +35,23 @@ public class MovementMethodHandler {
         int last = first;
 
         for (; last < length; ++last) {
-            if (editable.charAt(last) == ' ') break;
+            if (!isAscii(editable.charAt(last))) break;
         }
 
         for (; first > 0; --first) {
-            if (editable.charAt(first) == ' ') {
+            if (!isAscii(editable.charAt(first))) {
                 first++;
                 break;
             }
         }
 
+        //高亮末尾 会被取消掉 也不会高亮空格
+        if (first >= last) return;
+
         Selection.setSelection(editable, first, last);
+    }
+
+    public boolean isAscii(char c) {
+        return (c >= 'a' && c < 'z') || (c >= 'A' && c < 'Z');
     }
 }
