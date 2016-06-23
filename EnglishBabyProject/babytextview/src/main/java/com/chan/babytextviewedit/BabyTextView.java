@@ -50,7 +50,7 @@ public class BabyTextView extends EditText {
 
     private void init() {
         m_handler = new MovementMethodHandler(this);
-        m_slop = (int) (ViewConfiguration.get(getContext()).getScaledTouchSlop() * 0.75);
+        m_slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
     
     private boolean isJustify = false;
@@ -75,6 +75,7 @@ public class BabyTextView extends EditText {
     }
 
     private int m_lastY = 0;
+    private boolean m_shouldShowSelect = true;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
@@ -82,11 +83,16 @@ public class BabyTextView extends EditText {
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 m_lastY = (int) event.getY();
-                selectWords(event);
+                m_shouldShowSelect = true;
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (event.getY() - m_lastY >= m_slop) {
-                    clearSelect();
+                    m_shouldShowSelect = false;
+                }
+                break;
+            case MotionEvent.ACTION_UP:
+                if (m_shouldShowSelect) {
+                    selectWords(event);
                 }
         }
 
@@ -101,10 +107,6 @@ public class BabyTextView extends EditText {
      */
     private void selectWords(MotionEvent event) {
         m_handler.selectWord(event);
-    }
-
-    private void clearSelect() {
-        Selection.removeSelection(getText());
     }
 
     /**
