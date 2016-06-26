@@ -25,6 +25,9 @@ import com.chan.babytextviewedit.utils.TextJustification;
 public class BabyTextView extends EditText {
 
     private MovementMethodHandler m_handler;
+    private int m_lastY = 0;
+    private boolean m_shouldShowSelect = true;
+
     private int m_slop;
 
     public BabyTextView(Context context) {
@@ -52,7 +55,7 @@ public class BabyTextView extends EditText {
         m_handler = new MovementMethodHandler(this);
         m_slop = ViewConfiguration.get(getContext()).getScaledTouchSlop();
     }
-    
+
     private boolean isJustify = false;
 
     @Override
@@ -73,9 +76,6 @@ public class BabyTextView extends EditText {
     protected boolean getDefaultEditable() {
         return false;
     }
-
-    private int m_lastY = 0;
-    private boolean m_shouldShowSelect = true;
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {

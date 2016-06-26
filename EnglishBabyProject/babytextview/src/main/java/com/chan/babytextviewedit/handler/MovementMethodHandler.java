@@ -24,6 +24,7 @@ public class MovementMethodHandler {
     public void selectWord(MotionEvent event) {
 
         int first = m_widget.getOffsetForPosition(event.getX(), event.getY());
+
         Editable editable = m_widget.getEditableText();
         final int length = editable.length();
 
